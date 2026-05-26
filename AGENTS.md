@@ -7,6 +7,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Harness Execution Scope
 
 - Agents must stay inside the explicitly requested task or the active item in `docs/TASKS.md`.
+- `docs/TASKS.md` is the backlog index; each task listed there must have a detailed spec file in `.harness/tasks/`.
+- Task specs in `.harness/tasks/` must include implementation breakdown and validation plan before execution starts.
+- While implementing a new task, agents must create and work on a dedicated branch that includes the task id (for example: `feat/T-0001-short-title`).
+- Agents should create atomic commits aligned to meaningful units of work, only when necessary to preserve clean and reviewable history.
 - Agents must not pursue opportunistic refactors, polish passes, cleanups, or architectural improvements unless they are strictly required to complete the assigned task or remove a blocking defect.
 - If an agent identifies a non-essential improvement in code or file structure, it must ask for approval before making that change.
 - File moves, renames, directory reshapes, dependency changes, and broad refactors always require approval unless they are strictly necessary to complete the assigned task.
