@@ -1,4 +1,3 @@
-<!-- Canonical file lives in docs/AGENTS.md. Keep this root entrypoint for agent autodiscovery. -->
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
 
