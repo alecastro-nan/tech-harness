@@ -21,6 +21,8 @@
 ## Scope Control and Change Authorization
 
 - Agents must execute only the requested work or the explicitly assigned backlog item.
+- For each new backlog task implementation, work must happen on a dedicated branch that includes the task id (format: `T-####`).
+- Commits must be atomic and scoped to coherent change units, and should be created only when they are necessary to preserve a clear review trail.
 - Code improvements, refactors, cleanups, and structural changes are forbidden unless they are strictly necessary to complete the assigned work or fix a blocking defect.
 - Any non-essential improvement to code quality, architecture, or file organization requires explicit approval before execution.
 - Proposed but non-essential improvements should be surfaced as recommendations, not implemented by default.
