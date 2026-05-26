@@ -1,65 +1,166 @@
 import Image from "next/image";
+import Link from "next/link";
+import { MiniCart } from "@/components/ui/MiniCart";
+import { SiteFooter } from "@/components/ui/SiteFooter";
+import { TopNav } from "@/components/ui/TopNav";
+
+const featuredProducts = [
+  {
+    id: "velocita-x1",
+    name: "Velocita X-1",
+    description: "Ultra-light marathon racer with embedded telemetry chip.",
+    price: 285,
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuD__bJ0-64VoNw7g4iOcJuwZwjnJkw8uGs5MHZwCIspZnfKJ4wC997WJq5R0JfvA_d6jfMWQNUiPbRy8r0UzLfaCmFbqzflxltXgaPxvjkJktYM5ZUlGBmPolEU5CT09OvDfxp2WeBreaDscnTO-swbvH31K-miCJJthDmnZSU76rGNVuYe_7Iqd1y2rGhVDdxwiZ1w3hopeKBHlLgTJnf8G5sPWfckjRpLQoOV5gkeFt9LdxF4bbq53Sz0ue9e56B2FZg30EVPGGmh",
+  },
+  {
+    id: "pulse-tracer",
+    name: "Pulse Tracer",
+    description: "Daily trainer with integrated biometric feedback loop.",
+    price: 220,
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCZI_1Dcy9IkchZ15tXJVcOviuNp9fB3Y8IhDZx_ctOizH2gLABoR3e1zB9yw28hO6IciZdFimZUdYuwhq8F3JE9m2jhE08MasU4hG1VroiqH_aXuJqc2oDILrBnOi15b374_6HmYXgNJgCVkYIrbiA6j7rarG33W7uzVPk5bZyConoMt8TPmbz4JDa5VIPbSWYIEKTdZp7Ql1P-rX8MLo4dFyfErhz9YjFMWnAMTn3eL-7rPmatGsEFW8OazuboOi14OlhM8SfYT07",
+  },
+  {
+    id: "quantum-void",
+    name: "Quantum Void",
+    description: "Zero-gravity feel with max energy return.",
+    price: 350,
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuD-4ONEngJDQfAFMqBV6se9WW8bsrJHqp2kEcL8h-KcWknRceWxDtgda1k0g9RRkL7wQJOpsVyiAKzHU2vPjv_GaspFeL7eAO0VtUzMP89UY_vHXxp3Gp_N-MUbnBNnizCvBzQLzFmUHk_9ZO4lCKyhRcECkAZwTy6B7IEhgUlOJRKdXcjaErSfu0TGrs8n04PnFd9o9_tNPDy_hq3suPUwRf-O3AEFTLJwTVKk64ttpvdqA7RX6V3Ac_weipW6udEo5G9W",
+  },
+] as const;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+      <div className="pointer-events-none absolute inset-0 cyber-grid opacity-30" />
+      <TopNav active="home" actions={<MiniCart />} />
+
+      <main className="relative z-10 pt-20">
+        <section className="relative border-b border-white/10 py-16 md:py-24">
+          <div className="absolute left-1/2 top-16 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+          <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-4 md:grid-cols-12 md:px-16">
+            <div className="md:col-span-5 space-y-8">
+              <div className="inline-flex items-center gap-2 border border-secondary/30 bg-secondary/10 px-3 py-1">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-secondary" />
+                <span className="text-xs uppercase tracking-[0.2em] text-secondary">
+                  System Online V2.4
+                </span>
+              </div>
+              <h1 className="text-5xl font-bold uppercase leading-none text-primary md:text-7xl">
+                Evolve Your
+                <br />
+                Gait
+              </h1>
+              <p className="max-w-md text-base text-[var(--on-surface-variant)] md:text-lg">
+                Precision-engineered carbon fiber integration meets
+                hyper-responsive energy return systems. Calibrate your
+                performance.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/catalog"
+                  className="neon-glow-primary neon-glow-primary-hover inline-flex items-center gap-2 bg-primary px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-black transition-all hover:bg-white"
+                >
+                  Explore Elite Series
+                  <span className="material-symbols-outlined text-base">
+                    arrow_forward
+                  </span>
+                </Link>
+                <Link
+                  href="/command-center"
+                  className="inline-flex items-center gap-2 border border-secondary px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-secondary transition-colors hover:bg-secondary/10"
+                >
+                  Command Center
+                </Link>
+              </div>
+            </div>
+
+            <div className="md:col-span-7">
+              <div className="relative border border-white/10 bg-surface p-3">
+                <div className="relative overflow-hidden border border-white/10 bg-black/50">
+                  <Image
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW-XXxhqyWVO_tfgNKIy83VO43fUdawMQhui2u3MnaY_U2VQojOU5W_GkNejRjW3KpaiAtpwat_xj2dwQ35BbZUtzXz9mip5iqCe-OlBY_7RdaK-qZiMwCLvPKUwKxac8Av31D653Iu-RhM3nPX3UPCagkcKp0mQmgNXBbfy93DB-ThTr0aI3P-2DjCjBCM8TvU6trkdqYZ4SepKh4NGqtso9wA2fpol4aK9q_lN_x_jpGfv5mo8zfrFo9G7CkVqAXRWvSgFad9HwU"
+                    alt="3D carbon-fiber running shoe render"
+                    width={1280}
+                    height={960}
+                    className="h-full max-h-[540px] w-full object-cover"
+                  />
+                  <div className="absolute right-4 top-4 text-xs uppercase tracking-[0.2em] text-[var(--on-surface-variant)]">
+                    DAT::592.X
+                  </div>
+                  <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--on-surface-variant)]">
+                    <span className="material-symbols-outlined text-base">
+                      sensors
+                    </span>
+                    Syncing
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[1280px] px-4 py-16 md:px-16 md:py-20">
+          <div className="mb-8 flex items-end justify-between border-b border-white/10 pb-4">
+            <div>
+              <h2 className="text-3xl uppercase md:text-5xl">Elite Catalog</h2>
+              <p className="mt-2 text-sm text-[var(--on-surface-variant)]">
+                High-fidelity imports from Stitch translated into App Router
+                views.
+              </p>
+            </div>
+            <Link
+              href="/catalog"
+              className="text-xs uppercase tracking-[0.18em] text-secondary hover:text-primary"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+              View All
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProducts.map((product) => (
+              <article
+                key={product.id}
+                className="group border border-white/10 bg-surface transition-colors hover:border-primary/60"
+              >
+                <div className="aspect-square overflow-hidden border-b border-white/10 bg-black/40 p-6">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={640}
+                    height={640}
+                    className="h-full w-full object-contain grayscale transition-all duration-500 group-hover:grayscale-0"
+                  />
+                </div>
+                <div className="space-y-4 p-5">
+                  <div>
+                    <h3 className="text-xl uppercase">{product.name}</h3>
+                    <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
+                      {product.description}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                    <span className="text-2xl font-bold text-primary">
+                      ${product.price}
+                    </span>
+                    <button
+                      type="button"
+                      className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"
+                      aria-label={`Add ${product.name} to cart`}
+                    >
+                      <span className="material-symbols-outlined">add</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }
