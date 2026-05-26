@@ -1,5 +1,17 @@
 # Master Backlog Checklist
 
+## Backlog Workflow
+
+- Keep this file as the master backlog list.
+- For every new task created here, create a matching spec in `.harness/tasks/`.
+- Use a shared task id between both places with format `T-####` (for example: `T-0001`).
+- Use `.harness/tasks/TEMPLATE.md` as the baseline for each task spec.
+- Detailed execution breakdown and validation plan live in each task spec file.
+
+## Task Registry (ID Format: T-####)
+
+- [ ] `T-0001` Replace Quantum Void card with Garmin Forerunner 165 Music and migrate displayed item prices to ARS using factor 1420. Spec: `.harness/tasks/T-0001-garmin-forerunner-165-music-and-ars-pricing.md`.
+
 ## Phase 1: High-Fidelity UI Skeleton Replicas (Importing from Stitch)
 
 - [x] Import Stitch source HTML references into App Router route structure.
