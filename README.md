@@ -59,5 +59,6 @@ pnpm lint
 
 - `docs/ROLES.md` defines execution boundaries per agent persona.
 - `docs/NON_NEGOTIABLE_RULES.md` defines hard engineering constraints.
-- `docs/TASKS.md` is the master phased backlog.
+- `docs/TASKS.md` is the master backlog index.
+- `.harness/tasks/` stores one detailed task specification per backlog item.
 - `docs/SESSION_LOG.md` is the handoff protocol for multi-turn agent work.
