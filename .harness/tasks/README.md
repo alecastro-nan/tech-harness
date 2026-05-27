@@ -36,3 +36,5 @@ Each task file should include at least:
 4. Start implementation on a dedicated branch that includes the task id (for example: `feat/T-0001-short-title`).
 5. Create atomic commits for coherent work units only when needed to keep review history clear.
 6. Update status in both places as work progresses.
+7. When closing the task, open a pull request from the task branch to `main`.
+8. Write the pull request description using `./.github/PULL_REQUEST_TEMPLATE.md`.

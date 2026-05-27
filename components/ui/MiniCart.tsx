@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { convertToARS, formatARS } from "@/lib/currency";
 
 type CartItem = {
   id: string;
@@ -29,7 +30,7 @@ export function MiniCart() {
   }, []);
 
   const total = mockItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + convertToARS(item.price) * item.quantity,
     0,
   );
 
@@ -88,7 +89,7 @@ export function MiniCart() {
                 QTY {item.quantity}
               </p>
               <p className="mt-2 text-lg font-semibold text-primary">
-                ${item.price * item.quantity}
+                {formatARS(convertToARS(item.price) * item.quantity)}
               </p>
             </article>
           ))}
@@ -97,7 +98,9 @@ export function MiniCart() {
         <div className="space-y-4 border-t border-white/10 p-6">
           <div className="flex items-center justify-between text-sm text-[var(--on-surface-variant)]">
             <span>Total</span>
-            <span className="text-xl font-semibold text-primary">${total}</span>
+            <span className="text-xl font-semibold text-primary">
+              {formatARS(total)}
+            </span>
           </div>
           <button
             type="button"

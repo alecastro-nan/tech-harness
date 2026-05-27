@@ -1,5 +1,6 @@
 import { TopNav } from "@/components/ui/TopNav";
 import { VerificationCodeInput } from "@/components/ui/VerificationCodeInput";
+import { convertToARS, formatARS } from "@/lib/currency";
 
 const orderItems = [
   {
@@ -20,10 +21,10 @@ const orderItems = [
 
 export default function CheckoutPage() {
   const subtotal = orderItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + convertToARS(item.price) * item.quantity,
     0,
   );
-  const savings = 15;
+  const savings = convertToARS(15);
   const total = subtotal - savings;
 
   return (
@@ -54,7 +55,7 @@ export default function CheckoutPage() {
                   </p>
                 </div>
                 <p className="mt-2 text-lg text-primary">
-                  ${item.price * item.quantity}.00
+                  {formatARS(convertToARS(item.price) * item.quantity)}
                 </p>
               </article>
             ))}
@@ -63,7 +64,7 @@ export default function CheckoutPage() {
           <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-sm text-[var(--on-surface-variant)]">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>${subtotal}.00</span>
+              <span>{formatARS(subtotal)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping Logistics</span>
@@ -73,11 +74,15 @@ export default function CheckoutPage() {
               <span className="text-xs uppercase tracking-[0.2em] text-secondary">
                 System Savings
               </span>
-              <span className="text-lg text-secondary">-${savings}.00</span>
+              <span className="text-lg text-secondary">
+                -{formatARS(savings)}
+              </span>
             </div>
             <div className="mt-3 flex items-end justify-between">
               <span className="text-xl uppercase text-white">Total</span>
-              <span className="text-4xl font-bold text-white">${total}.00</span>
+              <span className="text-4xl font-bold text-white">
+                {formatARS(total)}
+              </span>
             </div>
           </div>
         </section>
