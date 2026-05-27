@@ -1,8 +1,12 @@
 import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import { MiniCart } from "@/components/ui/MiniCart";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
 import { getARSPrice } from "@/lib/currency";
+import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
+import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
+import forerunner165MusicBgImage from "@/app/assets/products/garmin-forerunner-165-music-bg-black.webp";
 
 type Product = {
   id: string;
@@ -10,7 +14,7 @@ type Product = {
   description: string;
   price: number;
   tags: string[];
-  image: string;
+  image: StaticImageData;
 };
 
 const products: ReadonlyArray<Product> = [
@@ -20,8 +24,7 @@ const products: ReadonlyArray<Product> = [
     description: "Ultra-light marathon racer with embedded telemetry chip.",
     price: 285,
     tags: ["C-PLATE V3", "GPS SYNC"],
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD__bJ0-64VoNw7g4iOcJuwZwjnJkw8uGs5MHZwCIspZnfKJ4wC997WJq5R0JfvA_d6jfMWQNUiPbRy8r0UzLfaCmFbqzflxltXgaPxvjkJktYM5ZUlGBmPolEU5CT09OvDfxp2WeBreaDscnTO-swbvH31K-miCJJthDmnZSU76rGNVuYe_7Iqd1y2rGhVDdxwiZ1w3hopeKBHlLgTJnf8G5sPWfckjRpLQoOV5gkeFt9LdxF4bbq53Sz0ue9e56B2FZg30EVPGGmh",
+    image: velocitaX1Image,
   },
   {
     id: "pulse-tracer",
@@ -29,8 +32,7 @@ const products: ReadonlyArray<Product> = [
     description: "Daily trainer with integrated biometric feedback loop.",
     price: 220,
     tags: ["HR SENSOR"],
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCZI_1Dcy9IkchZ15tXJVcOviuNp9fB3Y8IhDZx_ctOizH2gLABoR3e1zB9yw28hO6IciZdFimZUdYuwhq8F3JE9m2jhE08MasU4hG1VroiqH_aXuJqc2oDILrBnOi15b374_6HmYXgNJgCVkYIrbiA6j7rarG33W7uzVPk5bZyConoMt8TPmbz4JDa5VIPbSWYIEKTdZp7Ql1P-rX8MLo4dFyfErhz9YjFMWnAMTn3eL-7rPmatGsEFW8OazuboOi14OlhM8SfYT07",
+    image: pulseTracerImage,
   },
   {
     id: "garmin-forerunner-165-music",
@@ -39,7 +41,7 @@ const products: ReadonlyArray<Product> = [
       "Advanced sports watch with integrated music and fitness tracking.",
     price: 350,
     tags: ["MULTI-GNSS", "MUSIC"],
-    image: "/garmin-forerunner-165-music-bg-black.webp",
+    image: forerunner165MusicBgImage,
   },
 ];
 

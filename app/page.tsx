@@ -4,6 +4,9 @@ import { MiniCart } from "@/components/ui/MiniCart";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
 import { getARSPrice } from "@/lib/currency";
+import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
+import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
+import forerunner165MusicImage from "@/app/assets/products/forerunner-165-music-ia.webp";
 
 const featuredProducts = [
   {
@@ -11,16 +14,14 @@ const featuredProducts = [
     name: "Velocita X-1",
     description: "Ultra-light marathon racer with embedded telemetry chip.",
     price: 285,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD__bJ0-64VoNw7g4iOcJuwZwjnJkw8uGs5MHZwCIspZnfKJ4wC997WJq5R0JfvA_d6jfMWQNUiPbRy8r0UzLfaCmFbqzflxltXgaPxvjkJktYM5ZUlGBmPolEU5CT09OvDfxp2WeBreaDscnTO-swbvH31K-miCJJthDmnZSU76rGNVuYe_7Iqd1y2rGhVDdxwiZ1w3hopeKBHlLgTJnf8G5sPWfckjRpLQoOV5gkeFt9LdxF4bbq53Sz0ue9e56B2FZg30EVPGGmh",
+    image: velocitaX1Image,
   },
   {
     id: "pulse-tracer",
     name: "Pulse Tracer",
     description: "Daily trainer with integrated biometric feedback loop.",
     price: 220,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCZI_1Dcy9IkchZ15tXJVcOviuNp9fB3Y8IhDZx_ctOizH2gLABoR3e1zB9yw28hO6IciZdFimZUdYuwhq8F3JE9m2jhE08MasU4hG1VroiqH_aXuJqc2oDILrBnOi15b374_6HmYXgNJgCVkYIrbiA6j7rarG33W7uzVPk5bZyConoMt8TPmbz4JDa5VIPbSWYIEKTdZp7Ql1P-rX8MLo4dFyfErhz9YjFMWnAMTn3eL-7rPmatGsEFW8OazuboOi14OlhM8SfYT07",
+    image: pulseTracerImage,
   },
   {
     id: "garmin-forerunner-165-music",
@@ -28,7 +29,7 @@ const featuredProducts = [
     description:
       "Advanced sports watch with integrated music and fitness tracking.",
     price: 350,
-    image: "/garmin-forerunner-165-music-bg-black.webp",
+    image: forerunner165MusicImage,
   },
 ] as const;
 
