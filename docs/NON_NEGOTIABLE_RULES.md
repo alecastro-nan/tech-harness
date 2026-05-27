@@ -23,6 +23,8 @@
 - Agents must execute only the requested work or the explicitly assigned backlog item.
 - For each new backlog task implementation, work must happen on a dedicated branch that includes the task id (format: `T-####`).
 - Commits must be atomic and scoped to coherent change units, and should be created only when they are necessary to preserve a clear review trail.
+- Any task closure requires a pull request from the task branch into `main`.
+- Pull requests must include a complete description following `./.github/PULL_REQUEST_TEMPLATE.md`.
 - Code improvements, refactors, cleanups, and structural changes are forbidden unless they are strictly necessary to complete the assigned work or fix a blocking defect.
 - Any non-essential improvement to code quality, architecture, or file organization requires explicit approval before execution.
 - Proposed but non-essential improvements should be surfaced as recommendations, not implemented by default.
@@ -33,6 +35,7 @@
 - Every handoff must capture completed work, open blockers, explicit next steps, decisions taken, and the reason for those decisions.
 - If an agent intentionally avoids a change, defers work, narrows scope, or applies a workaround, the handoff must explain why.
 - A handoff that omits rationale for material decisions is incomplete.
+- A handoff that closes a task without recording the pull request number/link is incomplete.
 
 ## OLED Dark Structure
 
