@@ -1,38 +1,28 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import forerunner165MusicImage from "@/app/assets/products/forerunner-165-music-ia.webp";
-import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
-import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
 import { AddToCartButton } from "@/components/ui/AddToCartButton";
 import { MiniCart } from "@/components/ui/MiniCart";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
 import { getARSPrice } from "@/lib/currency";
+import { featuredProducts } from "@/lib/products";
 
-const featuredProducts = [
-  {
-    id: "velocita-x1",
-    name: "Velocita X-1",
-    description: "Ultra-light marathon racer with embedded telemetry chip.",
-    price: 285,
-    image: velocitaX1Image,
+export const metadata: Metadata = {
+  title: "Cyber-Run Tech | Elite Running Gear",
+  description:
+    "Discover elite running technology, cyber-performance footwear, and precision gear engineered for high-output training.",
+  alternates: {
+    canonical: "/",
   },
-  {
-    id: "pulse-tracer",
-    name: "Pulse Tracer",
-    description: "Daily trainer with integrated biometric feedback loop.",
-    price: 220,
-    image: pulseTracerImage,
-  },
-  {
-    id: "garmin-forerunner-165-music",
-    name: "Garmin Forerunner 165 Music",
+  openGraph: {
+    title: "Cyber-Run Tech | Elite Running Gear",
     description:
-      "Advanced sports watch with integrated music and fitness tracking.",
-    price: 350,
-    image: forerunner165MusicImage,
+      "High-performance running footwear and wearable tech built for speed, telemetry, and consistency.",
+    url: "/",
+    type: "website",
   },
-] as const;
+};
 
 export default function Home() {
   return (

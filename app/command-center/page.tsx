@@ -1,6 +1,20 @@
+import type { Metadata } from "next";
 import { MiniCart } from "@/components/ui/MiniCart";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
+
+export const metadata: Metadata = {
+  title: "Command Center",
+  description:
+    "Track hardware links, order logistics, and telemetry snapshots from the Cyber-Run command center.",
+  alternates: {
+    canonical: "/command-center",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 type TelemetryMetric = {
   id: string;
