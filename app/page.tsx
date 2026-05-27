@@ -28,8 +28,7 @@ const featuredProducts = [
     description:
       "Advanced sports watch with integrated music and fitness tracking.",
     price: 350,
-    image:
-      "https://images.garmin.com/products/smartwatch/hero/Forerunner-165-Music/Light-Granite.png",
+    image: "/garmin-forerunner-165-music.png",
   },
 ] as const;
 
