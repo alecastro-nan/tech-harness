@@ -29,6 +29,10 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
+body[data-cart-open="true"] #app-shell {
+  filter: blur(8px) saturate(0.85);
+}
+
 h1,
 h2,
 h3,
