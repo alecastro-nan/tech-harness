@@ -155,6 +155,7 @@ export default function CatalogPage() {
                         id: product.id,
                         name: product.name,
                         price: product.price,
+                        image: product.image.src,
                       }}
                       ariaLabel={`Add ${product.name} to cart`}
                       className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"

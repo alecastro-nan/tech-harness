@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getCartItemCount, useCartStore } from "@/lib/cart-store";
@@ -59,7 +60,7 @@ export function MiniCart() {
 
       <aside
         className={[
-          "fixed right-0 top-0 z-[70] flex h-full w-full max-w-lg flex-col border-l border-white/10 bg-black/95 shadow-2xl transition-transform duration-300",
+          "fixed right-0 top-0 z-[70] flex h-[100dvh] w-full max-w-lg flex-col border-l border-white/10 bg-black/95 shadow-2xl transition-transform duration-300",
           isOpen ? "translate-x-0" : "translate-x-full",
         ].join(" ")}
         aria-hidden={!isOpen}
@@ -85,7 +86,7 @@ export function MiniCart() {
               : "Syncing cart..."}
           </div>
 
-          <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-6 py-5">
+          <div className="min-h-0 max-h-[calc(100dvh-240px)] flex-1 space-y-4 overflow-y-auto px-6 py-5">
             {hasHydrated && items.length === 0 ? (
               <div className="flex h-full min-h-48 flex-col items-center justify-center border border-dashed border-white/15 bg-surface px-5 text-center">
                 <p className="text-sm uppercase tracking-[0.18em] text-white">
@@ -103,9 +104,33 @@ export function MiniCart() {
                 className="space-y-3 border border-white/15 bg-surface p-4"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-sm uppercase tracking-[0.14em] text-white">
-                    {item.name}
-                  </h3>
+                  <div className="flex items-start gap-3">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden border border-white/10 bg-black/50">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={96}
+                          height={96}
+                          className="h-full w-full object-contain"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-[10px] uppercase tracking-[0.14em] text-[var(--on-surface-variant)]">
+                          No img
+                        </div>
+                      )}
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm uppercase tracking-[0.14em] text-white">
+                        {item.name}
+                      </h3>
+                      <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[var(--on-surface-variant)]">
+                        Qty {item.quantity}
+                      </p>
+                    </div>
+                  </div>
+
                   <button
                     type="button"
                     onClick={() => removeItem(item.id)}
@@ -163,7 +188,7 @@ export function MiniCart() {
             <Link
               href="/checkout"
               onClick={() => setIsOpen(false)}
-              className="neon-glow-primary neon-glow-primary-hover inline-flex items-center justify-center bg-primary px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-black transition-colors hover:bg-white"
+              className="neon-glow-primary neon-glow-primary-hover inline-flex items-center justify-center bg-primary px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-primary"
             >
               Checkout
             </Link>

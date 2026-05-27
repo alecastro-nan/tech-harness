@@ -9,6 +9,7 @@ export type CartItem = {
   id: string;
   name: string;
   price: number;
+  image?: string;
   quantity: number;
 };
 
@@ -16,6 +17,7 @@ type AddCartItemInput = {
   id: string;
   name: string;
   price: number;
+  image?: string;
 };
 
 type CartStore = {
@@ -62,6 +64,7 @@ export const useCartStore = create<CartStore>()(
             return {
               items: replaceCartItem(state.items, item.id, (entry) => ({
                 ...entry,
+                image: entry.image ?? item.image,
                 quantity: entry.quantity + 1,
               })),
             };

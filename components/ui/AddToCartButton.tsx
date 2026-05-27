@@ -7,6 +7,7 @@ type AddToCartButtonProps = {
     id: string;
     name: string;
     price: number;
+    image?: string;
   };
   className: string;
   ariaLabel: string;
