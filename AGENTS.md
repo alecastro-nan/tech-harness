@@ -16,6 +16,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Agents must not pursue opportunistic refactors, polish passes, cleanups, or architectural improvements unless they are strictly required to complete the assigned task or remove a blocking defect.
 - If an agent identifies a non-essential improvement in code or file structure, it must ask for approval before making that change.
 - File moves, renames, directory reshapes, dependency changes, and broad refactors always require approval unless they are strictly necessary to complete the assigned task.
+- Before introducing new UI blocks, agents must corroborate whether reusable components already exist and reuse them when possible.
+- When duplicated UI patterns are required by the active task, agents should extract atomic/reusable components as part of the scoped implementation.
+- Reuse-oriented refactors must preserve behavior and avoid breaking changes.
 - Every session-ending response must leave a clear handoff in `docs/SESSION_LOG.md`.
 - That handoff must include the decisions taken during the session and the reason for each material decision, especially tradeoffs, deferred work, and scope cuts.
 - The session-ending handoff must include the pull request number/link when a task is closed.

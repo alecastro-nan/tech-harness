@@ -1,50 +1,25 @@
-import type { StaticImageData } from "next/image";
-import Image from "next/image";
-import forerunner165MusicBgImage from "@/app/assets/products/garmin-forerunner-165-music-bg-black.webp";
-import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
-import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
-import { AddToCartButton } from "@/components/ui/AddToCartButton";
+import type { Metadata } from "next";
 import { MiniCart } from "@/components/ui/MiniCart";
+import { ProductCard } from "@/components/ui/ProductCard";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
-import { getARSPrice } from "@/lib/currency";
+import { catalogProducts } from "@/lib/products";
 
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  tags: string[];
-  image: StaticImageData;
-};
-
-const products: ReadonlyArray<Product> = [
-  {
-    id: "velocita-x1",
-    name: "Velocita X-1",
-    description: "Ultra-light marathon racer with embedded telemetry chip.",
-    price: 285,
-    tags: ["C-PLATE V3", "GPS SYNC"],
-    image: velocitaX1Image,
+export const metadata: Metadata = {
+  title: "Catalog | Cyber-Run Elite Gear",
+  description:
+    "Browse Cyber-Run's elite catalog: carbon-plate footwear, biometric wearables, and precision training hardware.",
+  alternates: {
+    canonical: "/catalog",
   },
-  {
-    id: "pulse-tracer",
-    name: "Pulse Tracer",
-    description: "Daily trainer with integrated biometric feedback loop.",
-    price: 220,
-    tags: ["HR SENSOR"],
-    image: pulseTracerImage,
-  },
-  {
-    id: "garmin-forerunner-165-music",
-    name: "Garmin Forerunner 165 Music",
+  openGraph: {
+    title: "Catalog | Cyber-Run Elite Gear",
     description:
-      "Advanced sports watch with integrated music and fitness tracking.",
-    price: 350,
-    tags: ["MULTI-GNSS", "MUSIC"],
-    image: forerunner165MusicBgImage,
+      "Explore high-performance products with telemetry-ready design and pro-level durability.",
+    url: "/catalog",
+    type: "website",
   },
-];
+};
 
 const sidebarItems = [
   "Filters",
@@ -115,54 +90,12 @@ export default function CatalogPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {products.map((product) => (
-              <article
+            {catalogProducts.map((product) => (
+              <ProductCard
                 key={product.id}
-                className="group flex flex-col border border-white/10 bg-surface transition-colors hover:border-primary/60"
-              >
-                <div className="relative aspect-square overflow-hidden border-b border-white/10 bg-black/40 p-6">
-                  <div className="absolute left-4 top-4 z-10 flex flex-col gap-2">
-                    {product.tags.map((tag) => (
-                      <span
-                        key={`${product.id}-${tag}`}
-                        className="border border-primary/40 bg-primary/10 px-2 py-1 text-[10px] uppercase tracking-[0.15em] text-primary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={640}
-                    height={640}
-                    className="h-full w-full object-contain grayscale transition-all duration-500 group-hover:grayscale-0"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col justify-between gap-4 p-5">
-                  <div>
-                    <h3 className="text-xl uppercase">{product.name}</h3>
-                    <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                      {product.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                    <span className="text-2xl font-semibold text-primary">
-                      {getARSPrice(product.price)}
-                    </span>
-                    <AddToCartButton
-                      product={{
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.image.src,
-                      }}
-                      ariaLabel={`Add ${product.name} to cart`}
-                      className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"
-                    />
-                  </div>
-                </div>
-              </article>
+                product={product}
+                variant="catalog"
+              />
             ))}
           </div>
         </section>
