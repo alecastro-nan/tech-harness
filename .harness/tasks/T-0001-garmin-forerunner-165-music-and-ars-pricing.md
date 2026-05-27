@@ -53,6 +53,6 @@ Relevant current locations:
 
 ## Status
 
-- State: Planned
-- Owner: Unassigned
-- Last Updated: 2026-05-26
+- State: Done
+- Owner: Copilot
+- Last Updated: 2026-05-27
