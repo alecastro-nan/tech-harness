@@ -39,7 +39,7 @@ const products: ReadonlyArray<Product> = [
       "Advanced sports watch with integrated music and fitness tracking.",
     price: 350,
     tags: ["MULTI-GNSS", "MUSIC"],
-    image: "/garmin-forerunner-165-music.png",
+    image: "/garmin-forerunner-165-music-bg-black.webp",
   },
 ];
 
