@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { ToastManager } from "@/components/ui/ToastManager";
 import "./globals.css";
 
 const inter = Inter({
@@ -77,7 +78,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <ToastManager />
+      </body>
     </html>
   );
 }

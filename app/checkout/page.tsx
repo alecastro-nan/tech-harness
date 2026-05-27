@@ -1,12 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { MiniCart } from "@/components/ui/MiniCart";
+import { PrimaryActionButton } from "@/components/ui/PrimaryActionButton";
+import { SecondActionButton } from "@/components/ui/SecondActionButton";
 import { TopNav } from "@/components/ui/TopNav";
 import { VerificationCodeInput } from "@/components/ui/VerificationCodeInput";
 import { useCartStore } from "@/lib/cart-store";
 import { convertToARS, formatARS } from "@/lib/currency";
 
+const RESEND_INTERVAL_SECONDS = 60;
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export default function CheckoutPage() {
+  const [email, setEmail] = useState("");
+  const [codeRequested, setCodeRequested] = useState(false);
+  const [resendCountdown, setResendCountdown] = useState(0);
+  const [verificationCode, setVerificationCode] = useState("");
+
   const items = useCartStore((state) => state.items);
   const hasHydrated = useCartStore((state) => state.hasHydrated);
   const incrementItem = useCartStore((state) => state.incrementItem);
@@ -19,13 +33,41 @@ export default function CheckoutPage() {
   );
   const savings = items.length > 0 ? convertToARS(15) : 0;
   const total = subtotal - savings;
+  const emailIsValid = isValidEmail(email);
+  const sendCodeDisabled = !emailIsValid || resendCountdown > 0;
+
+  useEffect(() => {
+    if (resendCountdown <= 0) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setResendCountdown((previous) => Math.max(previous - 1, 0));
+    }, 1000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [resendCountdown]);
+
+  const sendCodeButtonLabel =
+    resendCountdown > 0 ? `Send Code (${resendCountdown}s)` : "Send Code";
+  const verifyDisabled = verificationCode.length !== 6;
+
+  const handleSendCode = () => {
+    if (sendCodeDisabled) {
+      return;
+    }
+
+    setCodeRequested(true);
+    setVerificationCode("");
+    setResendCountdown(RESEND_INTERVAL_SECONDS);
+  };
 
   return (
-    <div className="relative min-h-screen bg-black text-foreground">
+    <div className="relative flex min-h-screen flex-col bg-black text-foreground">
       <div className="pointer-events-none fixed inset-0 cyber-grid opacity-30" />
       <TopNav active="checkout" actions={<MiniCart />} />
 
-      <main className="relative z-10 mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-8 px-4 pb-40 pt-28 md:px-16 lg:grid-cols-2 lg:pb-20">
+      <main className="relative z-10 mx-auto grid w-full max-w-[1280px] flex-1 grid-cols-1 gap-8 px-4 pb-8 pt-28 md:px-16 lg:grid-cols-2 lg:pb-12">
         <section className="border border-white/10 bg-surface p-5 md:p-6">
           <h1 className="mb-5 text-3xl uppercase">Order Protocol</h1>
           <div className="space-y-3">
@@ -147,24 +189,55 @@ export default function CheckoutPage() {
                 <input
                   id="checkout-email"
                   type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.currentTarget.value)}
                   placeholder="runner@cyber-net.co"
                   className="w-full bg-transparent text-sm text-white outline-none placeholder:text-[var(--on-surface-variant)]"
                 />
               </div>
             </div>
 
-            <VerificationCodeInput />
+            <div className="space-y-4">
+              <SecondActionButton
+                type="button"
+                onClick={handleSendCode}
+                disabled={sendCodeDisabled}
+                className="w-full"
+              >
+                {sendCodeButtonLabel}
+              </SecondActionButton>
+
+              {codeRequested ? (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs uppercase tracking-[0.2em] text-secondary">
+                      Waiting for Verification Code
+                    </p>
+                    <span className="material-symbols-outlined animate-pulse text-secondary">
+                      sensors
+                    </span>
+                  </div>
+                  <VerificationCodeInput onCodeChange={setVerificationCode} />
+                  <PrimaryActionButton
+                    type="button"
+                    disabled={verifyDisabled}
+                    className="w-full"
+                  >
+                    Verificate
+                  </PrimaryActionButton>
+                </div>
+              ) : null}
+            </div>
           </form>
         </section>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-black/90 p-4 backdrop-blur-md lg:absolute lg:bottom-6 lg:left-1/2 lg:right-auto lg:w-[min(500px,calc(100%-2rem))] lg:-translate-x-1/2 lg:border">
-        <button
-          type="button"
-          className="neon-glow-primary neon-glow-primary-hover w-full bg-primary px-5 py-4 text-sm font-bold uppercase tracking-[0.2em] text-black transition-colors hover:bg-white"
-        >
-          Authenticate and Finalize
-        </button>
+      <div className="relative z-10 mt-auto border-t border-white/10 bg-black/90 p-4">
+        <div className="mx-auto w-full max-w-[1280px] px-0 md:px-16">
+          <PrimaryActionButton type="button" className="w-full">
+            Authenticate and Finalize
+          </PrimaryActionButton>
+        </div>
       </div>
     </div>
   );

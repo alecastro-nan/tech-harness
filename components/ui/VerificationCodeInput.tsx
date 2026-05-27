@@ -12,18 +12,22 @@ const CODE_SLOTS = [
   "slot-6",
 ] as const;
 
-export function VerificationCodeInput() {
+type VerificationCodeInputProps = {
+  onCodeChange?: (code: string) => void;
+};
+
+export function VerificationCodeInput({
+  onCodeChange,
+}: VerificationCodeInputProps) {
   const [values, setValues] = useState<string[]>(Array(CODE_LENGTH).fill(""));
   const refs = useRef<Array<HTMLInputElement | null>>([]);
 
   const handleChange = (index: number, nextValue: string) => {
-    const sanitized = nextValue
-      .replace(/[^0-9a-z]/gi, "")
-      .slice(0, 1)
-      .toUpperCase();
+    const sanitized = nextValue.replace(/[^0-9]/g, "").slice(0, 1);
     const draft = [...values];
     draft[index] = sanitized;
     setValues(draft);
+    onCodeChange?.(draft.join(""));
 
     if (sanitized.length === 1 && index < CODE_LENGTH - 1) {
       refs.current[index + 1]?.focus();
@@ -37,32 +41,23 @@ export function VerificationCodeInput() {
   };
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <p className="text-xs uppercase tracking-[0.2em] text-secondary">
-          Waiting for Verification Code
-        </p>
-        <span className="material-symbols-outlined animate-pulse text-secondary">
-          sensors
-        </span>
-      </div>
-      <div className="grid grid-cols-6 gap-2 sm:gap-3">
-        {CODE_SLOTS.map((slot, index) => (
-          <input
-            key={slot}
-            ref={(element) => {
-              refs.current[index] = element;
-            }}
-            inputMode="text"
-            maxLength={1}
-            value={values[index]}
-            onChange={(event) => handleChange(index, event.currentTarget.value)}
-            onKeyDown={(event) => handleKeyDown(index, event.key)}
-            className="h-12 w-full border border-white/20 bg-surface text-center text-xl uppercase text-white outline-none transition-all focus:border-secondary focus:shadow-neon-secondary"
-            aria-label={`Verification character ${index + 1}`}
-          />
-        ))}
-      </div>
+    <div className="grid grid-cols-6 gap-2 sm:gap-3">
+      {CODE_SLOTS.map((slot, index) => (
+        <input
+          key={slot}
+          ref={(element) => {
+            refs.current[index] = element;
+          }}
+          inputMode="text"
+          pattern="[0-9]*"
+          maxLength={1}
+          value={values[index]}
+          onChange={(event) => handleChange(index, event.currentTarget.value)}
+          onKeyDown={(event) => handleKeyDown(index, event.key)}
+          className="h-12 w-full border border-white/20 bg-surface text-center text-xl uppercase text-white outline-none transition-all focus:border-secondary focus:shadow-neon-secondary"
+          aria-label={`Verification character ${index + 1}`}
+        />
+      ))}
     </div>
   );
 }

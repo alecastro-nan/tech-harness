@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { MiniCart } from "@/components/ui/MiniCart";
+import { PrimaryActionButton } from "@/components/ui/PrimaryActionButton";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { SecondActionButton } from "@/components/ui/SecondActionButton";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
 import { featuredProducts } from "@/lib/products";
@@ -51,21 +53,18 @@ export default function Home() {
                 performance.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/catalog"
-                  className="neon-glow-primary neon-glow-primary-hover inline-flex items-center gap-2 bg-primary px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-black transition-all hover:bg-white"
-                >
+                <PrimaryActionButton href="/catalog" className="px-6 py-4">
                   Explore Elite Series
                   <span className="material-symbols-outlined text-base">
                     arrow_forward
                   </span>
-                </Link>
-                <Link
+                </PrimaryActionButton>
+                <SecondActionButton
                   href="/command-center"
-                  className="inline-flex items-center gap-2 border border-secondary px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-secondary transition-colors hover:bg-secondary/10"
+                  className="px-6 py-4 tracking-[0.18em]"
                 >
                   Command Center
-                </Link>
+                </SecondActionButton>
               </div>
             </div>
 
