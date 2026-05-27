@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { AddToCartButton } from "@/components/ui/AddToCartButton";
 import { MiniCart } from "@/components/ui/MiniCart";
+import { ProductCard } from "@/components/ui/ProductCard";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
-import { getARSPrice } from "@/lib/currency";
 import { catalogProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -93,53 +91,11 @@ export default function CatalogPage() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {catalogProducts.map((product) => (
-              <article
+              <ProductCard
                 key={product.id}
-                className="group flex flex-col border border-white/10 bg-surface transition-colors hover:border-primary/60"
-              >
-                <div className="relative aspect-square overflow-hidden border-b border-white/10 bg-black/40 p-6">
-                  <div className="absolute left-4 top-4 z-10 flex flex-col gap-2">
-                    {product.tags.map((tag) => (
-                      <span
-                        key={`${product.id}-${tag}`}
-                        className="border border-primary/40 bg-primary/10 px-2 py-1 text-[10px] uppercase tracking-[0.15em] text-primary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={640}
-                    height={640}
-                    className="h-full w-full object-contain grayscale transition-all duration-500 group-hover:grayscale-0"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col justify-between gap-4 p-5">
-                  <div>
-                    <h3 className="text-xl uppercase">{product.name}</h3>
-                    <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                      {product.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                    <span className="text-2xl font-semibold text-primary">
-                      {getARSPrice(product.price)}
-                    </span>
-                    <AddToCartButton
-                      product={{
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.image.src,
-                      }}
-                      ariaLabel={`Add ${product.name} to cart`}
-                      className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"
-                    />
-                  </div>
-                </div>
-              </article>
+                product={product}
+                variant="catalog"
+              />
             ))}
           </div>
         </section>

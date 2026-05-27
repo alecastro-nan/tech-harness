@@ -16,9 +16,11 @@ This task explicitly leverages internal skill packs under `.agents`, especially 
 - Add crawl/index support artifacts suitable for production discovery (robots/sitemap).
 - Improve semantic and discoverability signals for catalog/checkout/home routes.
 - Refactor repetitive product-related code into clearer reusable data structures/components where appropriate.
+- Modularize duplicated UI into shared reusable components and atomic building blocks where applicable.
 - Improve maintainability with cleaner boundaries for shared UI/data logic.
 - Apply security hardening for web responses (headers and trust signals) using practical Next.js configuration.
 - Keep user-facing behavior stable while improving quality, security, and search readiness.
+- Ensure all refactors are backward-compatible and introduce no breaking changes.
 
 ## Out of Scope
 
@@ -34,8 +36,9 @@ This task explicitly leverages internal skill packs under `.agents`, especially 
 3. Add `robots` and `sitemap` routes for crawler support.
 4. Refactor duplicated product definitions into shared typed domain data.
 5. Update pages/components to consume shared data while preserving behavior.
-6. Add response security headers in Next.js config (safe defaults).
-7. Validate with lint/build and perform manual sanity checks for route behavior.
+6. Extract reusable and atomic UI components for repeated product/card patterns.
+7. Add response security headers in Next.js config (safe defaults).
+8. Validate with lint/build and perform manual sanity checks for route behavior.
 
 ## Validation Plan
 
@@ -45,6 +48,7 @@ This task explicitly leverages internal skill packs under `.agents`, especially 
 - Manual checks:
   - Home, catalog, checkout render correctly after refactor.
   - Cart interactions still work as implemented in T-0002.
+  - Reused product UI is rendered via shared components without visual/function regressions.
   - Metadata appears per route and indexability signals are coherent.
   - `robots.txt` and `sitemap.xml` are served.
   - Security headers are present in configured responses.
@@ -59,4 +63,4 @@ This task explicitly leverages internal skill packs under `.agents`, especially 
 
 - State: Done
 - Owner: Copilot
-- Last Updated: 2026-05-27
+- Last Updated: 2026-05-27 (modularization + atomic reusable components clarified and applied)

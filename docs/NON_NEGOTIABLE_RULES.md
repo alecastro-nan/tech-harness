@@ -29,6 +29,12 @@
 - Any non-essential improvement to code quality, architecture, or file organization requires explicit approval before execution.
 - Proposed but non-essential improvements should be surfaced as recommendations, not implemented by default.
 
+## Reuse and Modularization Enforcement
+
+- Before implementing or changing UI logic, agents must verify whether an existing reusable component already satisfies the need.
+- If duplicated UI/behavior is detected in scope, agents must extract reusable components and atomic primitives when practical.
+- Any modularization/refactor for reuse must preserve public behavior and must not introduce breaking changes.
+
 ## Session Closure and Handoff Quality
 
 - No agent session may end without a clear handoff entry in SESSION_LOG.md.

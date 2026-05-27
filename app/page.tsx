@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { AddToCartButton } from "@/components/ui/AddToCartButton";
 import { MiniCart } from "@/components/ui/MiniCart";
+import { ProductCard } from "@/components/ui/ProductCard";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
-import { getARSPrice } from "@/lib/currency";
 import { featuredProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -114,43 +113,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProducts.map((product) => (
-              <article
+              <ProductCard
                 key={product.id}
-                className="group border border-white/10 bg-surface transition-colors hover:border-primary/60"
-              >
-                <div className="aspect-square overflow-hidden border-b border-white/10 bg-black/40 p-6">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={640}
-                    height={640}
-                    className="h-full w-full object-contain grayscale transition-all duration-500 group-hover:grayscale-0"
-                  />
-                </div>
-                <div className="space-y-4 p-5">
-                  <div>
-                    <h3 className="text-xl uppercase">{product.name}</h3>
-                    <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                      {product.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                    <span className="text-2xl font-bold text-primary">
-                      {getARSPrice(product.price)}
-                    </span>
-                    <AddToCartButton
-                      product={{
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.image.src,
-                      }}
-                      className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"
-                      ariaLabel={`Add ${product.name} to cart`}
-                    />
-                  </div>
-                </div>
-              </article>
+                product={product}
+                variant="featured"
+              />
             ))}
           </div>
         </section>

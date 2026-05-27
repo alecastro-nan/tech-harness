@@ -16,6 +16,24 @@ export type CatalogProduct = Product & {
   tags: string[];
 };
 
+export type CartProductInput = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+};
+
+export function toCartProduct(
+  product: Product | CatalogProduct,
+): CartProductInput {
+  return {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.image.src,
+  };
+}
+
 export const featuredProducts: ReadonlyArray<Product> = [
   {
     id: "velocita-x1",
