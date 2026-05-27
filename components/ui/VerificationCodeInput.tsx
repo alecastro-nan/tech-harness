@@ -37,32 +37,22 @@ export function VerificationCodeInput() {
   };
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <p className="text-xs uppercase tracking-[0.2em] text-secondary">
-          Waiting for Verification Code
-        </p>
-        <span className="material-symbols-outlined animate-pulse text-secondary">
-          sensors
-        </span>
-      </div>
-      <div className="grid grid-cols-6 gap-2 sm:gap-3">
-        {CODE_SLOTS.map((slot, index) => (
-          <input
-            key={slot}
-            ref={(element) => {
-              refs.current[index] = element;
-            }}
-            inputMode="text"
-            maxLength={1}
-            value={values[index]}
-            onChange={(event) => handleChange(index, event.currentTarget.value)}
-            onKeyDown={(event) => handleKeyDown(index, event.key)}
-            className="h-12 w-full border border-white/20 bg-surface text-center text-xl uppercase text-white outline-none transition-all focus:border-secondary focus:shadow-neon-secondary"
-            aria-label={`Verification character ${index + 1}`}
-          />
-        ))}
-      </div>
+    <div className="grid grid-cols-6 gap-2 sm:gap-3">
+      {CODE_SLOTS.map((slot, index) => (
+        <input
+          key={slot}
+          ref={(element) => {
+            refs.current[index] = element;
+          }}
+          inputMode="text"
+          maxLength={1}
+          value={values[index]}
+          onChange={(event) => handleChange(index, event.currentTarget.value)}
+          onKeyDown={(event) => handleKeyDown(index, event.key)}
+          className="h-12 w-full border border-white/20 bg-surface text-center text-xl uppercase text-white outline-none transition-all focus:border-secondary focus:shadow-neon-secondary"
+          aria-label={`Verification character ${index + 1}`}
+        />
+      ))}
     </div>
   );
 }

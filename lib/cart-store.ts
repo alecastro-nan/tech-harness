@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { useToastStore } from "@/lib/toast-store";
 
 const CART_STORAGE_KEY = "kinetic-cart-v1";
 
@@ -57,6 +58,12 @@ export const useCartStore = create<CartStore>()(
         set({ hasHydrated: value });
       },
       addItem: (item) => {
+        useToastStore.getState().enqueue({
+          type: "success",
+          title: "Added to cart",
+          description: `${item.name} is now in your cart.`,
+        });
+
         set((state) => {
           const existing = state.items.find((entry) => entry.id === item.id);
 

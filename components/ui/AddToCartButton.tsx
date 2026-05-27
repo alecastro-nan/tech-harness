@@ -24,7 +24,10 @@ export function AddToCartButton({
     <button
       type="button"
       onClick={() => addItem(product)}
-      className={className}
+      className={[
+        className,
+        "transition-transform duration-150 active:scale-95 active:brightness-110",
+      ].join(" ")}
       aria-label={ariaLabel}
     >
       <span className="material-symbols-outlined">add</span>

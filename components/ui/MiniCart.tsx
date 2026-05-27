@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { PrimaryActionButton } from "@/components/ui/PrimaryActionButton";
 import { getCartItemCount, useCartStore } from "@/lib/cart-store";
 import { convertToARS, formatARS } from "@/lib/currency";
 
@@ -185,13 +185,13 @@ export function MiniCart() {
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Link
+            <PrimaryActionButton
               href="/checkout"
               onClick={() => setIsOpen(false)}
-              className="neon-glow-primary neon-glow-primary-hover inline-flex items-center justify-center bg-primary px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-primary"
+              className="w-full"
             >
               Checkout
-            </Link>
+            </PrimaryActionButton>
 
             <button
               type="button"
