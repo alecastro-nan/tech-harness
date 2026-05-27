@@ -11,7 +11,7 @@
 ## Task Registry (ID Format: T-####)
 
 - [x] `T-0001` Replace Quantum Void card with Garmin Forerunner 165 Music and migrate displayed item prices to ARS using factor 1420. Spec: `.harness/tasks/T-0001-garmin-forerunner-165-music-and-ars-pricing.md`.
-- [ ] `T-0002` Implement functional persistent cart (Zustand), fix floating cart visual defects, and ensure add/remove/quantity flows are accurate. Spec: `.harness/tasks/T-0002-functional-cart-zustand-and-visual-fixes.md`.
+- [x] `T-0002` Implement functional persistent cart (Zustand), fix floating cart visual defects, and ensure add/remove/quantity flows are accurate. Spec: `.harness/tasks/T-0002-functional-cart-zustand-and-visual-fixes.md`.
 
 ## Phase 1: High-Fidelity UI Skeleton Replicas (Importing from Stitch)
 

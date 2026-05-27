@@ -29,6 +29,10 @@ Relevant likely locations:
   - Scrollable cart list area must be usable and large enough to review cart items.
   - Cart container, items, controls, and actions must follow one coherent visual style.
 - Preserve current route behavior while making cart interactions functional across home, catalog, mini-cart, and checkout views.
+- Render a thumbnail per cart item inside the floating cart modal, with visible per-item quantity.
+- Ensure the floating cart supports mixed-product lists and keeps total price synced with list changes.
+- Ensure cart item list height is capped to viewport and becomes scrollable when content exceeds available height.
+- Fix white-hover CTA contrast so button labels remain readable and consistent with the rest of the UI.
 
 ## Out of Scope
 
@@ -61,6 +65,10 @@ Relevant likely locations:
   - "Return to Matrix" button is clearly visible before hover and remains accessible on hover/focus.
   - Cart scroll area allows reviewing all items when list grows.
   - Floating cart visual language is consistent across header, list, totals, and action controls.
+  - Each cart row shows a thumbnail and quantity for the corresponding item.
+  - Mixed item types are displayed as a proper list and total updates after any add/remove/quantity change.
+  - Cart item list never overflows viewport height and scroll is available when needed.
+  - Buttons with white hover backgrounds keep readable label contrast.
 - Commands:
   - `pnpm lint`
   - `pnpm build`
@@ -73,6 +81,6 @@ Relevant likely locations:
 
 ## Status
 
-- State: Planned
-- Owner: Unassigned
-- Last Updated: 2026-05-27
+- State: Done
+- Owner: Copilot
+- Last Updated: 2026-05-27 (updated with thumbnail/list/scroll/hover-contrast requirements)

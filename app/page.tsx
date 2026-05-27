@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import forerunner165MusicImage from "@/app/assets/products/forerunner-165-music-ia.webp";
+import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
+import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
+import { AddToCartButton } from "@/components/ui/AddToCartButton";
 import { MiniCart } from "@/components/ui/MiniCart";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
 import { getARSPrice } from "@/lib/currency";
-import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
-import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
-import forerunner165MusicImage from "@/app/assets/products/forerunner-165-music-ia.webp";
 
 const featuredProducts = [
   {
@@ -147,13 +148,16 @@ export default function Home() {
                     <span className="text-2xl font-bold text-primary">
                       {getARSPrice(product.price)}
                     </span>
-                    <button
-                      type="button"
+                    <AddToCartButton
+                      product={{
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image.src,
+                      }}
                       className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"
-                      aria-label={`Add ${product.name} to cart`}
-                    >
-                      <span className="material-symbols-outlined">add</span>
-                    </button>
+                      ariaLabel={`Add ${product.name} to cart`}
+                    />
                   </div>
                 </div>
               </article>

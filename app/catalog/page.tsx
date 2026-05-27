@@ -1,12 +1,13 @@
-import Image from "next/image";
 import type { StaticImageData } from "next/image";
+import Image from "next/image";
+import forerunner165MusicBgImage from "@/app/assets/products/garmin-forerunner-165-music-bg-black.webp";
+import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
+import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
+import { AddToCartButton } from "@/components/ui/AddToCartButton";
 import { MiniCart } from "@/components/ui/MiniCart";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { TopNav } from "@/components/ui/TopNav";
 import { getARSPrice } from "@/lib/currency";
-import velocitaX1Image from "@/app/assets/products/velocita-x1.png";
-import pulseTracerImage from "@/app/assets/products/pulse-tracer.png";
-import forerunner165MusicBgImage from "@/app/assets/products/garmin-forerunner-165-music-bg-black.webp";
 
 type Product = {
   id: string;
@@ -149,13 +150,16 @@ export default function CatalogPage() {
                     <span className="text-2xl font-semibold text-primary">
                       {getARSPrice(product.price)}
                     </span>
-                    <button
-                      type="button"
-                      aria-label={`Add ${product.name} to cart`}
+                    <AddToCartButton
+                      product={{
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image.src,
+                      }}
+                      ariaLabel={`Add ${product.name} to cart`}
                       className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white transition-colors hover:border-primary hover:text-primary"
-                    >
-                      <span className="material-symbols-outlined">add</span>
-                    </button>
+                    />
                   </div>
                 </div>
               </article>
