@@ -40,7 +40,7 @@ const products: ReadonlyArray<Product> = [
     price: 350,
     tags: ["MULTI-GNSS", "MUSIC"],
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD-4ONEngJDQfAFMqBV6se9WW8bsrJHqp2kEcL8h-KcWknRceWxDtgda1k0g9RRkL7wQJOpsVyiAKzHU2vPjv_GaspFeL7eAO0VtUzMP89UY_vHXxp3Gp_N-MUbnBNnizCvBzQLzFmUHk_9ZO4lCKyhRcECkAZwTy6B7IEhgUlOJRKdXcjaErSfu0TGrs8n04PnFd9o9_tNPDy_hq3suPUwRf-O3AEFTLJwTVKk64ttpvdqA7RX6V3Ac_weipW6udEo5G9W",
+      "https://images.garmin.com/products/smartwatch/hero/Forerunner-165-Music/Light-Granite.png",
   },
 ];
 
