@@ -14,6 +14,7 @@
 - [x] `T-0002` Implement functional persistent cart (Zustand), fix floating cart visual defects, and ensure add/remove/quantity flows are accurate. Spec: `.harness/tasks/T-0002-functional-cart-zustand-and-visual-fixes.md`.
 - [x] `T-0003` Improve SEO, code quality, and security hardening using `.agents` skills for SEO/Next/React/Tailwind. Spec: `.harness/tasks/T-0003-seo-code-quality-and-security-hardening.md`.
 - [x] `T-0004` Unify primary CTA buttons, improve checkout verification flow, and add toast notification system managed by Zustand. Spec: `.harness/tasks/T-0004-button-unification-verification-flow-and-toasts.md`.
+- [x] `T-0005` Apply visual polish to cart overlay, sold-out catalog behavior, command-center placeholder state, and product detail pages. Spec: `.harness/tasks/T-0005-visual-polish-soldout-and-product-details.md`.
 
 ## Phase 1: High-Fidelity UI Skeleton Replicas (Importing from Stitch)
 

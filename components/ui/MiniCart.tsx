@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { PrimaryActionButton } from "@/components/ui/PrimaryActionButton";
 import { SecondActionButton } from "@/components/ui/SecondActionButton";
 import { getCartItemCount, useCartStore } from "@/lib/cart-store";
@@ -9,6 +10,7 @@ import { convertToARS, formatARS } from "@/lib/currency";
 
 export function MiniCart() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const hasHydrated = useCartStore((state) => state.hasHydrated);
   const items = useCartStore((state) => state.items);
   const incrementItem = useCartStore((state) => state.incrementItem);
@@ -27,6 +29,26 @@ export function MiniCart() {
     return () => window.removeEventListener("keydown", onEscape);
   }, []);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) {
+      return;
+    }
+
+    if (isOpen) {
+      document.body.dataset.cartOpen = "true";
+    } else {
+      delete document.body.dataset.cartOpen;
+    }
+
+    return () => {
+      delete document.body.dataset.cartOpen;
+    };
+  }, [isMounted, isOpen]);
+
   const itemCount = getCartItemCount(items);
   const hasItems = itemCount > 0;
   const total = items.reduce(
@@ -34,33 +56,12 @@ export function MiniCart() {
     0,
   );
 
-  return (
+  const drawer = (
     <>
       <button
         type="button"
-        aria-label="Open cart drawer"
-        onClick={() => setIsOpen(true)}
-        className="relative inline-flex h-10 w-10 items-center justify-center border border-white/20 text-[var(--on-surface-variant)] transition-colors hover:border-primary hover:text-primary"
-      >
-        <span
-          className={[
-            "material-symbols-outlined transition-colors",
-            hasItems ? "text-primary" : "text-[var(--on-surface-variant)]",
-          ].join(" ")}
-        >
-          {hasItems ? "shopping_cart_checkout" : "shopping_cart"}
-        </span>
-        {itemCount > 0 ? (
-          <span className="absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full border border-secondary bg-secondary px-1 text-[10px] font-bold text-black">
-            {itemCount}
-          </span>
-        ) : null}
-      </button>
-
-      <button
-        type="button"
         className={[
-          "fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity",
+          "fixed inset-0 z-[60] bg-black/60 backdrop-blur-md transition-opacity",
           isOpen ? "opacity-100" : "pointer-events-none opacity-0",
         ].join(" ")}
         onClick={() => setIsOpen(false)}
@@ -207,7 +208,7 @@ export function MiniCart() {
               onClick={() => setIsOpen(false)}
               className="w-full"
             >
-              Return to Matrix
+              Return to Shop
             </SecondActionButton>
           </div>
 
@@ -220,6 +221,33 @@ export function MiniCart() {
           </button>
         </div>
       </aside>
+    </>
+  );
+
+  return (
+    <>
+      <button
+        type="button"
+        aria-label="Open cart drawer"
+        onClick={() => setIsOpen(true)}
+        className="relative inline-flex h-10 w-10 items-center justify-center border border-white/20 text-[var(--on-surface-variant)] transition-colors hover:border-primary hover:text-primary"
+      >
+        <span
+          className={[
+            "material-symbols-outlined transition-colors",
+            hasItems ? "text-primary" : "text-[var(--on-surface-variant)]",
+          ].join(" ")}
+        >
+          {hasItems ? "shopping_cart_checkout" : "shopping_cart"}
+        </span>
+        {itemCount > 0 ? (
+          <span className="absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full border border-secondary bg-secondary px-1 text-[10px] font-bold text-black">
+            {itemCount}
+          </span>
+        ) : null}
+      </button>
+
+      {isMounted ? createPortal(drawer, document.body) : null}
     </>
   );
 }

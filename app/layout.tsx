@@ -79,7 +79,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        {children}
+        <div
+          id="app-shell"
+          className="min-h-full flex flex-col transition-[filter,opacity] duration-300"
+        >
+          {children}
+        </div>
         <ToastManager />
       </body>
     </html>
