@@ -73,6 +73,6 @@ Relevant likely locations:
 
 ## Status
 
-- State: Planned
-- Owner: Unassigned
+- State: Done
+- Owner: Copilot
 - Last Updated: 2026-05-27
