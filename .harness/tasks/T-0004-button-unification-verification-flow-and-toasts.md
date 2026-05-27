@@ -18,8 +18,11 @@ After T-0003, the app still has duplicated CTA button styles, checkout verificat
   - After click, show waiting section + verification inputs.
   - Keep `Send Code` visible; disable with 60s resend timer.
 - Add subtle Tailwind press animation for product add buttons in cards.
+- Add subtle Tailwind hover feedback for product add buttons in cards.
 - Install a toast library and connect it to a dedicated Zustand store for app messaging.
 - Trigger success toast every time a product is added to cart.
+- Add a `Verificate` primary button below verification inputs, enabled only when the full numeric code is entered.
+- Create a reusable `SecondActionButton` component and replace duplicated secondary CTA styles, including `Command Center`, `Send Code`, and `Return to Matrix`.
 
 ## Out of Scope
 
@@ -36,6 +39,7 @@ After T-0003, the app still has duplicated CTA button styles, checkout verificat
 5. Install toast library and create Zustand toast store + renderer component.
 6. Wire add-to-cart action to dispatch success toasts through Zustand messaging.
 7. Validate with lint/build and manual behavior checks.
+8. Finalize secondary button reuse and verification submit gating logic.
 
 ## Validation Plan
 
@@ -48,7 +52,10 @@ After T-0003, the app still has duplicated CTA button styles, checkout verificat
   - Verification UI starts with only `Send Code`, then reveals waiting + code inputs post-send.
   - `Send Code` button remains visible and disabled for 60 seconds after send.
   - Add-to-cart button has subtle press animation.
+  - Add-to-cart button has subtle hover feedback.
   - Adding a product always triggers success toast.
+  - `Verificate` stays disabled until all numeric code inputs are completed.
+  - `SecondActionButton` is reused by all matching secondary CTAs.
 
 ## Risks / Notes
 

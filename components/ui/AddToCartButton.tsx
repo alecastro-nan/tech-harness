@@ -26,7 +26,7 @@ export function AddToCartButton({
       onClick={() => addItem(product)}
       className={[
         className,
-        "transition-transform duration-150 active:scale-95 active:brightness-110",
+        "transition-transform duration-150 hover:bg-white/5 active:scale-95 active:brightness-110",
       ].join(" ")}
       aria-label={ariaLabel}
     >

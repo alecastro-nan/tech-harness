@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { MiniCart } from "@/components/ui/MiniCart";
 import { PrimaryActionButton } from "@/components/ui/PrimaryActionButton";
+import { SecondActionButton } from "@/components/ui/SecondActionButton";
 import { TopNav } from "@/components/ui/TopNav";
 import { VerificationCodeInput } from "@/components/ui/VerificationCodeInput";
 import { useCartStore } from "@/lib/cart-store";
@@ -18,6 +19,7 @@ export default function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [codeRequested, setCodeRequested] = useState(false);
   const [resendCountdown, setResendCountdown] = useState(0);
+  const [verificationCode, setVerificationCode] = useState("");
 
   const items = useCartStore((state) => state.items);
   const hasHydrated = useCartStore((state) => state.hasHydrated);
@@ -48,6 +50,7 @@ export default function CheckoutPage() {
 
   const sendCodeButtonLabel =
     resendCountdown > 0 ? `Send Code (${resendCountdown}s)` : "Send Code";
+  const verifyDisabled = verificationCode.length !== 6;
 
   const handleSendCode = () => {
     if (sendCodeDisabled) {
@@ -55,6 +58,7 @@ export default function CheckoutPage() {
     }
 
     setCodeRequested(true);
+    setVerificationCode("");
     setResendCountdown(RESEND_INTERVAL_SECONDS);
   };
 
@@ -194,14 +198,14 @@ export default function CheckoutPage() {
             </div>
 
             <div className="space-y-4">
-              <PrimaryActionButton
+              <SecondActionButton
                 type="button"
                 onClick={handleSendCode}
                 disabled={sendCodeDisabled}
                 className="w-full"
               >
                 {sendCodeButtonLabel}
-              </PrimaryActionButton>
+              </SecondActionButton>
 
               {codeRequested ? (
                 <div className="space-y-3">
@@ -213,7 +217,14 @@ export default function CheckoutPage() {
                       sensors
                     </span>
                   </div>
-                  <VerificationCodeInput />
+                  <VerificationCodeInput onCodeChange={setVerificationCode} />
+                  <PrimaryActionButton
+                    type="button"
+                    disabled={verifyDisabled}
+                    className="w-full"
+                  >
+                    Verificate
+                  </PrimaryActionButton>
                 </div>
               ) : null}
             </div>

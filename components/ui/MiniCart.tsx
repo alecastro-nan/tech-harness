@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { PrimaryActionButton } from "@/components/ui/PrimaryActionButton";
+import { SecondActionButton } from "@/components/ui/SecondActionButton";
 import { getCartItemCount, useCartStore } from "@/lib/cart-store";
 import { convertToARS, formatARS } from "@/lib/currency";
 
@@ -193,13 +194,13 @@ export function MiniCart() {
               Checkout
             </PrimaryActionButton>
 
-            <button
+            <SecondActionButton
               type="button"
               onClick={() => setIsOpen(false)}
-              className="inline-flex items-center justify-center border border-secondary/70 bg-secondary/15 px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-secondary transition-colors hover:bg-secondary/30"
+              className="w-full"
             >
               Return to Matrix
-            </button>
+            </SecondActionButton>
           </div>
 
           <button
