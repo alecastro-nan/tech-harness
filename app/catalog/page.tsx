@@ -35,7 +35,8 @@ const products: ReadonlyArray<Product> = [
   {
     id: "garmin-forerunner-165-music",
     name: "Garmin Forerunner 165 Music",
-    description: "Advanced sports watch with integrated music and fitness tracking.",
+    description:
+      "Advanced sports watch with integrated music and fitness tracking.",
     price: 350,
     tags: ["MULTI-GNSS", "MUSIC"],
     image:

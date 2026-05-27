@@ -25,7 +25,8 @@ const featuredProducts = [
   {
     id: "garmin-forerunner-165-music",
     name: "Garmin Forerunner 165 Music",
-    description: "Advanced sports watch with integrated music and fitness tracking.",
+    description:
+      "Advanced sports watch with integrated music and fitness tracking.",
     price: 350,
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuD-4ONEngJDQfAFMqBV6se9WW8bsrJHqp2kEcL8h-KcWknRceWxDtgda1k0g9RRkL7wQJOpsVyiAKzHU2vPjv_GaspFeL7eAO0VtUzMP89UY_vHXxp3Gp_N-MUbnBNnizCvBzQLzFmUHk_9ZO4lCKyhRcECkAZwTy6B7IEhgUlOJRKdXcjaErSfu0TGrs8n04PnFd9o9_tNPDy_hq3suPUwRf-O3AEFTLJwTVKk64ttpvdqA7RX6V3Ac_weipW6udEo5G9W",

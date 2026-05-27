@@ -98,7 +98,9 @@ export function MiniCart() {
         <div className="space-y-4 border-t border-white/10 p-6">
           <div className="flex items-center justify-between text-sm text-[var(--on-surface-variant)]">
             <span>Total</span>
-            <span className="text-xl font-semibold text-primary">{formatARS(total)}</span>
+            <span className="text-xl font-semibold text-primary">
+              {formatARS(total)}
+            </span>
           </div>
           <button
             type="button"
