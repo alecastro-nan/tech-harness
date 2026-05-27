@@ -58,15 +58,6 @@ export default function CatalogPage() {
               ))}
             </nav>
 
-            <div className="mt-10 border-t border-white/10 pt-6">
-              <div className="flex items-end justify-between text-xs uppercase tracking-[0.2em] text-[var(--on-surface-variant)]">
-                <span>Stiffness Matrix</span>
-                <span className="text-secondary">80%</span>
-              </div>
-              <div className="mt-3 h-1 bg-surface-variant">
-                <div className="h-full w-4/5 bg-secondary" />
-              </div>
-            </div>
           </div>
         </aside>
 
