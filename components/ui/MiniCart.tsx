@@ -28,6 +28,7 @@ export function MiniCart() {
   }, []);
 
   const itemCount = getCartItemCount(items);
+  const hasItems = itemCount > 0;
   const total = items.reduce(
     (acc, item) => acc + convertToARS(item.price) * item.quantity,
     0,
@@ -41,7 +42,14 @@ export function MiniCart() {
         onClick={() => setIsOpen(true)}
         className="relative inline-flex h-10 w-10 items-center justify-center border border-white/20 text-[var(--on-surface-variant)] transition-colors hover:border-primary hover:text-primary"
       >
-        <span className="material-symbols-outlined">shopping_cart</span>
+        <span
+          className={[
+            "material-symbols-outlined transition-colors",
+            hasItems ? "text-primary" : "text-[var(--on-surface-variant)]",
+          ].join(" ")}
+        >
+          {hasItems ? "shopping_cart_checkout" : "shopping_cart"}
+        </span>
         {itemCount > 0 ? (
           <span className="absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full border border-secondary bg-secondary px-1 text-[10px] font-bold text-black">
             {itemCount}

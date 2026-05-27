@@ -23,6 +23,8 @@ After T-0003, the app still has duplicated CTA button styles, checkout verificat
 - Trigger success toast every time a product is added to cart.
 - Add a `Verificate` primary button below verification inputs, enabled only when the full numeric code is entered.
 - Create a reusable `SecondActionButton` component and replace duplicated secondary CTA styles, including `Command Center`, `Send Code`, and `Return to Matrix`.
+- Reduce toast notification display duration for faster feedback loops.
+- Change cart trigger icon when there are items in cart to create a clear notified state distinction.
 
 ## Out of Scope
 
@@ -40,6 +42,7 @@ After T-0003, the app still has duplicated CTA button styles, checkout verificat
 6. Wire add-to-cart action to dispatch success toasts through Zustand messaging.
 7. Validate with lint/build and manual behavior checks.
 8. Finalize secondary button reuse and verification submit gating logic.
+9. Tune toast timing and cart icon notified state cues.
 
 ## Validation Plan
 
@@ -56,6 +59,8 @@ After T-0003, the app still has duplicated CTA button styles, checkout verificat
   - Adding a product always triggers success toast.
   - `Verificate` stays disabled until all numeric code inputs are completed.
   - `SecondActionButton` is reused by all matching secondary CTAs.
+  - Toast messages disappear faster than default behavior.
+  - Cart icon changes when item count is greater than zero.
 
 ## Risks / Notes
 
